@@ -1,7 +1,9 @@
-package com.youaiduan.sorted;
+package com.youaiduan.sorted.impl;
+
+import com.youaiduan.sorted.Sort;
 
 /**
- * Ã°ÅÝÅÅÐò
+ * Ã°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
  * */
 public class BubbleSort extends Sort {
 
@@ -9,7 +11,7 @@ public class BubbleSort extends Sort {
 	public int[] sort(int[] arr) {
 		for(int i = 0; i < arr.length; i++) {
 			for(int j = 1; j < arr.length - i; j++) {
-//				Èç¹ûµ±Ç°Êý±ÈÇ°Ò»¸öÐ¡Ê±, Ôò½»»»
+//				ï¿½ï¿½ï¿½ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ï¿½Ç°Ò»ï¿½ï¿½Ð¡Ê±, ï¿½ò½»»ï¿½
 				if(arr[j] < arr[j-1]) {
 					swap(arr, j, j-1);
 				}

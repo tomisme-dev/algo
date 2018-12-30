@@ -5,6 +5,8 @@ import java.util.Arrays;
 import org.junit.Assert;
 import org.junit.Test;
 
+import com.youaiduan.sorted.impl.BubbleSort;
+
 public class BubbleSortTest {
 	private int arr[] = {4,3,2,56,89,11,23,45,256,2,3,4,5,112,34,56,54,2,345};
 

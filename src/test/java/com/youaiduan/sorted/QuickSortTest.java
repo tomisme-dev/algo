@@ -6,6 +6,8 @@ import java.util.Arrays;
 import org.junit.Assert;
 import org.junit.Test;
 
+import com.youaiduan.sorted.impl.QuickSort;
+
 public class QuickSortTest {
 	private int arr[] = {51,72,2,56,89,11,23,45,256,72,3,4,5,112,34,56,54,2,345,60};
 //	private int arr[] = {3,3,3,3,3,3,3,3};

@@ -1,5 +1,6 @@
-package com.youaiduan.sorted;
+package com.youaiduan.sorted.impl;
 
+import com.youaiduan.sorted.Sort;
 
 /**
  * 快速排序算法
