@@ -3,7 +3,9 @@ package com.youaiduan.sorted.impl;
 import com.youaiduan.sorted.Sort;
 
 /**
- * ð������
+ * 冒泡排序算法
+算法分析
+最佳情况：T(n) = O(n)   最差情况：T(n) = O(n2)   平均情况：T(n) = O(n2)
  * */
 public class BubbleSort extends Sort {
 
