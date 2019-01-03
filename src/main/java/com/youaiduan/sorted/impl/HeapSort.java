@@ -1,7 +1,14 @@
 package com.youaiduan.sorted.impl;
 
+import java.util.Arrays;
+
 import com.youaiduan.sorted.Sort;
 
+/** 最佳情况：T(n) = O(nlogn) 最差情况：T(n) = O(nlogn) 平均情况：T(n) = O(nlogn)
+ * 
+ * @author duanyouai
+ *
+ */
 public class HeapSort extends Sort {
 
 	@Override
@@ -9,31 +16,49 @@ public class HeapSort extends Sort {
 
 		//		从下向上构建大堆顶
 		for(int i = arr.length/2; i >= 0; i--) {
-			int leftChildIndex = getLeftChildIndex(i);
-			int rightChildIndex = getRightChildIndex(i);
-
-//			子比父大时, 交换
-			if(leftChildIndex < arr.length && arr[leftChildIndex] > arr[i]) {
-				
-				swap(arr, leftChildIndex, i);
-			}
-			
-//			子比父大时, 交换
-			if(rightChildIndex < arr.length && arr[rightChildIndex] > arr[i]) {
-				swap(arr, rightChildIndex, i);
-			}
+			adjuestHeap(arr, i, arr.length);
 		}
+		System.out.println("===" + Arrays.toString(arr));
 		
 //		将堆顶与最后一个值交换, 并在此调整二叉树, 使其成为大堆顶
+		int len = arr.length;
+		while(len > 0) {
+//			讲堆顶和最后一个数交换
+			swap(arr, 0, len-1);
+//			交换后重新调整堆
+			len--;
+			adjuestHeap(arr, 0, len);
+		}
 		
-		
-		
-		return null;
+		return arr;
 	}
 
-	//	大堆顶构建
-	private void heapSort(int[] arr, int i) {
-
+	//	调整使其成为大堆顶
+	private void adjuestHeap(int[] arr, int i, int len) {
+		int maxIndex = i;
+		int leftChildIndex = getLeftChildIndex(i);
+		int rightChildIndex = getRightChildIndex(i);
+		
+		if(i >= len) {
+			return;
+		}
+		
+//		右边子比父大，比左大时, 交换
+		if(rightChildIndex < len && arr[rightChildIndex] >= arr[i] && arr[rightChildIndex] >= arr[leftChildIndex]) {
+			maxIndex = rightChildIndex;
+		} else if(leftChildIndex < len && arr[leftChildIndex] >= arr[i] && rightChildIndex >= len) {
+//			左边大于父，且右不存在
+			maxIndex = leftChildIndex;
+		} else if(leftChildIndex < len && arr[leftChildIndex] >= arr[i] 
+				&& rightChildIndex < len && arr[leftChildIndex] >= arr[rightChildIndex]) {
+//			左边大于父，且大于右
+			maxIndex = leftChildIndex;
+		}
+		
+		if(maxIndex != i) {
+			swap(arr, maxIndex, i);
+			adjuestHeap(arr, maxIndex, len);
+		}
 	}
 
 
@@ -45,22 +70,6 @@ public class HeapSort extends Sort {
 	//	获取右孩子索引
 	private int getRightChildIndex(int index) {
 		return getLeftChildIndex(index) + 1;
-	}
-
-	private int getLeftChildValue(int[] arr, int index) {
-		return arr[getLeftChildIndex(index)];
-	}
-
-	private int getRightChildValue(int[] arr, int index) {
-		return arr[getRightChildIndex(index)];
-	}
-
-	private boolean hasLeftChild(int[] arr, int index) {
-		return getLeftChildIndex(index) < arr.length;
-	}
-
-	private boolean hasRightChild(int[] arr, int index) {
-		return getRightChildIndex(index) < arr.length;
 	}
 
 
