@@ -36,29 +36,35 @@ public class HeapSort extends Sort {
 	//	调整使其成为大堆顶
 	private void adjuestHeap(int[] arr, int i, int len) {
 		int maxIndex = i;
-		int leftChildIndex = getLeftChildIndex(i);
-		int rightChildIndex = getRightChildIndex(i);
 		
 		if(i >= len) {
 			return;
 		}
 		
-//		右边子比父大，比左大时, 交换
-		if(rightChildIndex < len && arr[rightChildIndex] >= arr[i] && arr[rightChildIndex] >= arr[leftChildIndex]) {
-			maxIndex = rightChildIndex;
-		} else if(leftChildIndex < len && arr[leftChildIndex] >= arr[i] && rightChildIndex >= len) {
-//			左边大于父，且右不存在
-			maxIndex = leftChildIndex;
-		} else if(leftChildIndex < len && arr[leftChildIndex] >= arr[i] 
-				&& rightChildIndex < len && arr[leftChildIndex] >= arr[rightChildIndex]) {
-//			左边大于父，且大于右
-			maxIndex = leftChildIndex;
+		while(maxIndex < len) {
+			int tmpIndex = maxIndex;
+			int leftChildIndex = getLeftChildIndex(maxIndex);
+			int rightChildIndex = getRightChildIndex(maxIndex);
+//			右边子比父大，比左大时, 交换
+			if(rightChildIndex < len && arr[rightChildIndex] >= arr[tmpIndex] && arr[rightChildIndex] >= arr[leftChildIndex]) {
+				maxIndex = rightChildIndex;
+			} else if(leftChildIndex < len && arr[leftChildIndex] >= arr[tmpIndex] && rightChildIndex >= len) {
+//				左边大于父，且右不存在
+				maxIndex = leftChildIndex;
+			} else if(leftChildIndex < len && arr[leftChildIndex] >= arr[tmpIndex] 
+					&& rightChildIndex < len && arr[leftChildIndex] >= arr[rightChildIndex]) {
+//				左边大于父，且大于右
+				maxIndex = leftChildIndex;
+			}
+			
+			if(maxIndex != tmpIndex) {
+				swap(arr, maxIndex, tmpIndex);
+//				adjuestHeap(arr, maxIndex, len);
+			} else {
+				break;
+			}
 		}
 		
-		if(maxIndex != i) {
-			swap(arr, maxIndex, i);
-			adjuestHeap(arr, maxIndex, len);
-		}
 	}
 
 
